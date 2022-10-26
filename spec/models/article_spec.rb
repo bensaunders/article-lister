@@ -64,12 +64,19 @@ RSpec.describe Article, type: :model do
       expect(article.details['title']).to eq('Ambipur plugin')
     end
 
+    it 'allows a dynamic like to be added' do
+      expect{ article.add_like }.to change { ArticleLike.count }.by(1)
+    end
+
+    it 'allows only one dynamic like to be added' do
+      expect{ article.add_like }.to change { ArticleLike.count }.by(1)
+      expect{ article.add_like }.not_to raise_error
+      expect{ article.add_like }.not_to change { ArticleLike.count }
+    end
+
     context 'when there is a matching dynamic like' do
       before do
-        allow(ArticleLike)
-          .to receive(:find_by)
-          .with(article_id: article.id)
-          .and_return(ArticleLike.new(article_id: article.id))
+        ArticleLike.create(article_id: article.id)
       end
 
       it 'reports a dynamic like' do

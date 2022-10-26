@@ -29,4 +29,8 @@ class Article
     static_likes += 1 if has_dynamic_like?
     static_likes
   end
+
+  def add_like
+    ArticleLike.find_or_create_by(article_id: self.id)
+  end
 end
