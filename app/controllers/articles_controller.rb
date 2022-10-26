@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Actions for displaying and updating articles
 class ArticlesController < ApplicationController
   def index
     @articles = Article.fetch

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A class for creating lists of article objects from a JSON file
 class Article
   include ActiveModel::API
 
