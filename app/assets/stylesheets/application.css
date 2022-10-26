@@ -13,3 +13,43 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  margin: 0;
+  font: 400 16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  color: #121212;
+}
+
+h1 {
+  padding: 0 1em;
+}
+
+.article {
+  margin-bottom: 1em;
+}
+
+.article h2 {
+  clear: left;
+  padding: 0.2em 1em;
+  color: white;
+  background-color: #00A69C;
+  margin: 1em 0 0.4em 0;
+}
+
+.article .description,
+.article .photos,
+.article .location,
+.article .likes {
+  padding: 0.2em 1.4em;
+}
+
+.article .location,
+.article .details {
+  width: 45%;
+  max-width: 400px;
+  float: left;
+}
+
+.article .photos img {
+  width: 100%;
+}

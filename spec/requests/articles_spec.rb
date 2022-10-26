@@ -17,7 +17,7 @@ RSpec.describe "Articles", type: :request do
           'photos' => [
             {
               'files' => {
-                'small' => 'https://cdn.example.com/img1.jpg'
+                'medium' => 'https://cdn.example.com/img1.jpg'
               }
             }
           ]

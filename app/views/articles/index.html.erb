@@ -1,32 +1,36 @@
 <h1>Articles</h1>
 <% @articles.each do | article | %>
-  <h2 id="<%= article.id %>"><%= article.details.dig('title') %></h2>
-  <p class="description"><%= article.details.dig('description') %></p>
-  <div class="photos">
-    <%
-      photos = article.details.dig('photos') || []
-      photos.each do | photo |
-    %>
-      <img src="<%= photo.dig('files', 'small') %>" />
-    <% end %>
-  <div>
+  <div class="article">
+    <h2 id="<%= article.id %>"><%= article.details.dig('title') %></h2>
+    <div class="details">
+      <p class="description"><%= article.details.dig('description') %></p>
+      <div class="photos">
+        <%
+          photos = article.details.dig('photos') || []
+          photos.each do | photo |
+        %>
+          <img src="<%= photo.dig('files', 'medium') %>" />
+        <% end %>
+      </div>
+      <p class="likes">
+        Likes: <%= article.likes %>
+        <% if article.has_dynamic_like? %>
+          👍
+        <% else %>
+        <%= link_to 'Like this article', action: 'like', id: article.id %>
+        <% end %>
+      </p>
+    </div>
 
-  <div class="location">
-    <h3>Location</h3>
-    <p>
-      <%= article.details.dig('location', 'town') %>,
-      <%= article.details.dig('location', 'country') %>
-      (<%= article.details.dig('location', 'distance') %>mi)
-    </p>
-    <img src="<%= map_url(article.details.dig('location')) %>" />
-  </p>
+    <div class="location">
+      <h3>Location</h3>
+      <p>
+        <%= article.details.dig('location', 'town') %>,
+        <%= article.details.dig('location', 'country') %>
+        (<%= article.details.dig('location', 'distance') %>mi)
+      </p>
+      <img src="<%= map_url(article.details.dig('location')) %>" />
+    </div>
 
-  <p>
-    Likes: <%= article.likes %>
-    <% if article.has_dynamic_like? %>
-      👍
-    <% else %>
-    <%= link_to 'Like this article', action: 'like', id: article.id %>
-    <% end %>
-  </p>
+  </div>
 <% end %>
