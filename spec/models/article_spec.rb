@@ -63,5 +63,22 @@ RSpec.describe Article, type: :model do
     it 'allows the details to be fetched' do
       expect(article.details['title']).to eq('Ambipur plugin')
     end
+
+    context 'when there is a matching dynamic like' do
+      before do
+        allow(ArticleLike)
+          .to receive(:find_by)
+          .with(article_id: article.id)
+          .and_return(ArticleLike.new(article_id: article.id))
+      end
+
+      it 'reports a dynamic like' do
+        expect(article.has_dynamic_like?).to be_truthy
+      end
+
+      it 'shows a higher likes count' do
+        expect(article.likes).to eq(21)
+      end
+    end
   end
 end
