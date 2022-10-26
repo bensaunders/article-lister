@@ -82,7 +82,7 @@ RSpec.describe Article, type: :model do
       end
 
       it 'reports a dynamic like' do
-        expect(article.has_dynamic_like?).to be_truthy
+        expect(article.dynamic_like?).to be_truthy
       end
 
       it 'shows a higher likes count' do

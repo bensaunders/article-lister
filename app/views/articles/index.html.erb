@@ -14,7 +14,7 @@
       </div>
       <p class="likes">
         Likes: <%= article.likes %>
-        <% if article.has_dynamic_like? %>
+        <% if article.dynamic_like? %>
           👍
         <% else %>
         <%= link_to 'Like this article', action: 'like', id: article.id %>

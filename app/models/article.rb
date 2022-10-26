@@ -22,13 +22,13 @@ class Article
     end
   end
 
-  def has_dynamic_like?
+  def dynamic_like?
     ArticleLike.find_by(article_id: id)
   end
 
   def likes
     static_likes = details['reactions']['likes']
-    static_likes += 1 if has_dynamic_like?
+    static_likes += 1 if dynamic_like?
     static_likes
   end
 
