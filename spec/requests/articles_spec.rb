@@ -9,7 +9,18 @@ RSpec.describe "Articles", type: :request do
           'title' => 'Waterproof jacket',
           'reactions' => {
             'likes' => 23
-          }
+          },
+          'location' => {
+            'latitude' => 0,
+            'longitude' => 0
+          },
+          'photos' => [
+            {
+              'files' => {
+                'small' => 'https://cdn.example.com/img1.jpg'
+              }
+            }
+          ]
         }
       )
     ]
