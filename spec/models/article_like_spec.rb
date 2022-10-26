@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ArticleLike, type: :model do
@@ -13,7 +15,7 @@ RSpec.describe ArticleLike, type: :model do
 
   it 'is unique by article_id' do
     ArticleLike.create(article_id: 1723)
-    expect{ArticleLike.create!(article_id: 1723)}
+    expect { ArticleLike.create!(article_id: 1723) }
       .to raise_error(ActiveRecord::RecordInvalid)
   end
 end

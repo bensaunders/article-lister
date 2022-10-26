@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
@@ -65,13 +67,13 @@ RSpec.describe Article, type: :model do
     end
 
     it 'allows a dynamic like to be added' do
-      expect{ article.add_like }.to change { ArticleLike.count }.by(1)
+      expect { article.add_like }.to(change { ArticleLike.count }.by(1))
     end
 
     it 'allows only one dynamic like to be added' do
-      expect{ article.add_like }.to change { ArticleLike.count }.by(1)
-      expect{ article.add_like }.not_to raise_error
-      expect{ article.add_like }.not_to change { ArticleLike.count }
+      expect { article.add_like }.to(change { ArticleLike.count }.by(1))
+      expect { article.add_like }.not_to raise_error
+      expect { article.add_like }.not_to(change { ArticleLike.count })
     end
 
     context 'when there is a matching dynamic like' do

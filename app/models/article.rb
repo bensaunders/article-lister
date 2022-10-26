@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Article
   include ActiveModel::API
 
@@ -12,7 +14,7 @@ class Article
     ensure
       article_list_as_hashes = JSON.parse(article_list_as_text)
     end
-    article_list_as_hashes.map do | article_hash |
+    article_list_as_hashes.map do |article_hash|
       Article.new(
         id: article_hash['id'],
         details: article_hash
@@ -21,16 +23,16 @@ class Article
   end
 
   def has_dynamic_like?
-    ArticleLike.find_by(article_id: self.id)
+    ArticleLike.find_by(article_id: id)
   end
 
   def likes
-    static_likes = self.details['reactions']['likes']
+    static_likes = details['reactions']['likes']
     static_likes += 1 if has_dynamic_like?
     static_likes
   end
 
   def add_like
-    ArticleLike.find_or_create_by(article_id: self.id)
+    ArticleLike.find_or_create_by(article_id: id)
   end
 end
