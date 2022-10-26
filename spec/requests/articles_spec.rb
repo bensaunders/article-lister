@@ -6,7 +6,10 @@ RSpec.describe "Articles", type: :request do
       Article.new(
         id: 456,
         details: {
-          'title' => 'Waterproof jacket'
+          'title' => 'Waterproof jacket',
+          'reactions' => {
+            'likes' => 23
+          }
         }
       )
     ]
@@ -27,6 +30,11 @@ RSpec.describe "Articles", type: :request do
     it "displays the article titles" do
       get articles_index_path
       expect(response.body).to include('Waterproof jacket')
+    end
+
+    it "displays the number of likes for each article" do
+      get articles_index_path
+      expect(response.body).to include('Likes: 23')
     end
   end
 end

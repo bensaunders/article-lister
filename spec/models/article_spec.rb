@@ -5,7 +5,10 @@ RSpec.describe Article, type: :model do
     '[
       {
         "id": 123,
-        "title": "Ambipur plugin"
+        "title": "Ambipur plugin",
+        "reactions": {
+          "likes": 20
+        }
       }
     ]'
   end
@@ -47,6 +50,10 @@ RSpec.describe Article, type: :model do
 
     it 'has an ID' do
       expect(article.id).to eq(123)
+    end
+
+    it 'has a likes count' do
+      expect(article.likes).to eq(20)
     end
 
     it 'has a details hash' do

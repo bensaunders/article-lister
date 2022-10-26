@@ -19,4 +19,8 @@ class Article
       )
     end
   end
+
+  def likes
+    self.details['reactions']['likes']
+  end
 end
