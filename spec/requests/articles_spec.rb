@@ -37,4 +37,27 @@ RSpec.describe "Articles", type: :request do
       expect(response.body).to include('Likes: 23')
     end
   end
+
+  describe "GET /articles/:id/like" do
+    context "when the article does not have a dynamic like" do
+      it "creates an ArticleLike" do
+        expect(ArticleLike.find_by(article_id: 456)).to be_nil
+        get "/articles/456/like"
+        expect(ArticleLike.find_by(article_id: 456)).not_to be_nil
+      end
+    end
+
+    context "when the article already has a dynamic like" do
+      before do
+        ArticleLike.create(article_id: 567)
+      end
+
+      it "does not create another ArticleLike" do
+        likes_before = ArticleLike.where(article_id: 567).count
+        get "/articles/567/like"
+        likes_after = ArticleLike.where(article_id: 567).count
+        expect(likes_after).to eq(likes_before)
+      end
+    end
+  end
 end
