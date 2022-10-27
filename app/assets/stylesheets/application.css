@@ -53,3 +53,7 @@ h1 {
 .article .photos img {
   width: 100%;
 }
+
+.article .user img {
+  width: 2em;
+}

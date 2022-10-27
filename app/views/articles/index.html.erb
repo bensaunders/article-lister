@@ -23,7 +23,11 @@
     </div>
 
     <div class="location">
-      <h3>Location</h3>
+      <h3>User</h3>
+      <p class="user">
+        <img src="<%= article.details.dig('user', 'current_avatar', 'small') %>" />
+        <%= article.details.dig('user', 'first_name') %>
+      </p>
       <p>
         <%= article.details.dig('location', 'town') %>,
         <%= article.details.dig('location', 'country') %>
