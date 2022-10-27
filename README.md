@@ -2,10 +2,10 @@
 
 ## Overview
 
-The Article Lister app fetches data from a JSON file and displays
-it for the user.
+The Article Lister app fetches data from a JSON file and displays it for
+the user.
 
-It's a Rails 7 app, using a Postgres database.
+It's a Rails 7 app, using a SQLite3 database.
 
 ## Running the app
 
@@ -29,9 +29,10 @@ need to rebuild the image in order for them to take effect:
 To run commands from a temporary container, add them to the end of the
 `docker run` command; for example:
 
-    docker run --rm -v $(pwd):/article-lister article-lister rake test
+    docker run --rm -v $(pwd):/article-lister article-lister rspec
 
-Or to enter a temporary interactive container to run commands:
+Or to enter a temporary interactive container to run multiple commands:
 
     docker run -it --rm -v $(pwd):/article-lister article-lister bash
-    root@4887bc460446:/article-lister# rake test
+    root@4887bc460446:/article-lister# rspec
+    root@4887bc460446:/article-lister# rubocop
